@@ -7,7 +7,7 @@ class FdbkTest < Test::Unit::TestCase
     Fdbk
   end
 
-  def home_page
+  def test_home 
     get '/'
     assert last_response.ok?
   end

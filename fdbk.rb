@@ -14,7 +14,6 @@ class Fdbk < Sinatra::Base
                              :path => '/',
                              :expire_after => 3600*24*365,
                              :secret => 'alkj328ff2kwfj2@EFGQwch023jfg2h'
-  
 
   register Sinatra::LilAuthentication 
 
@@ -33,7 +32,6 @@ class Fdbk < Sinatra::Base
   end
 
   get '/' do
-    login_required
     "Fdbk"
   end
 
