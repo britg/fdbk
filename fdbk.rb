@@ -5,9 +5,18 @@ require 'sinatra/respond_to'
 require 'haml'
 require 'rack-flash'
 
-class Fdbk < Sinatra::Base
+require 'lib/db'
+require 'vendor/sinatra-authentication/lib/sinatra-authentication.rb'
 
-  register Sinatra::RespondTo
+class Fdbk < Sinatra::Base
+  use Rack::Session::Cookie, :key => 'fdbk.session',
+                             :domain => ENV['HTTP_HOST'],
+                             :path => '/',
+                             :expire_after => 3600*24*365,
+                             :secret => 'alkj328ff2kwfj2@EFGQwch023jfg2h'
+  
+
+  register Sinatra::LilAuthentication 
 
   configure do
     set :app_file, __FILE__
@@ -24,6 +33,7 @@ class Fdbk < Sinatra::Base
   end
 
   get '/' do
+    login_required
     "Fdbk"
   end
 
